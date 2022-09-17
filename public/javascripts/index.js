@@ -7,7 +7,7 @@ let board = new Map();
 let keyboard = new Map();
 let keyboard2 = new Map();
 
-let randomString = "150/2=75"; // dap an - gia tri default
+let randomString = "";
 
 // Points
 let points = 0;
@@ -118,7 +118,7 @@ function eventClick() {
     let calcuPrevious2 = [];
     for (let i = 0; i < 10; i++) {
         let funcForThis = () => {
-            if (index2 != length + 1) {
+            if (index2 != width + 1) {
                 document.getElementById(`${index}.${index2}`).innerHTML = document.getElementById(`1.${i + 1}.2`).innerHTML;
                 ++index2;
             }
@@ -128,7 +128,7 @@ function eventClick() {
     }
     for (let i = 0; i < 7; i++) {
         let funcForThis = () => {
-            if (i > 0 && i < 6 && index2 != length + 1) {
+            if (i > 0 && i < 6 && index2 != width + 1) {
                 // Hai dau toan tu khong o canh nhau (Tru khi dau - tao ra so am)
                 if(!parseInt(document.getElementById(`1.${i + 1}.3`).innerHTML) && index2 > 1){
                     if (!parseInt(document.getElementById(`${index}.${index2-1}`).innerHTML) && document.getElementById(`${index}.${index2-1}`).innerHTML !== "0"){
@@ -176,14 +176,14 @@ function eventClick() {
                 document.getElementById(`${index}.${index2 - 1}`).innerHTML = "";
                 --index2;
             } 
-            else if (i == 0 && index2 === length + 1) {
+            else if (i == 0 && index2 == width + 1) {
                 let theList = []; // arr charcter of current row
-                for (let j = 1; j < length + 1; j++) {
+                for (let j = 1; j < width + 1; j++) {
                     theList.push(document.getElementById(`${index}.${j}`).innerHTML);
                 }
                 if (checkIfOperatorisRight(theList)){
                     let checkedArr = checkCurrentRow(theList);
-                    for (let i = 1; i <= length; i++) {
+                    for (let i = 1; i <= width; i++) {
                         if (checkedArr[i - 1] == -1) {
                             document.getElementById(`${index}.${i}`).style.backgroundColor = "red";
                         }
@@ -196,7 +196,7 @@ function eventClick() {
                     }
                     index2 = 1
                     ++index
-                    for (let i = 1; i < length + 1; i++){
+                    for (let i = 1; i < width + 1; i++){
                         if (document.getElementById(`${index-1}.${i}`).style.backgroundColor != "lightgreen"){
                             if (index == 9){
                                 updatePoints();
@@ -436,7 +436,6 @@ const generateExpression = () => {
             a = Math.floor(Math.random() * 90) + 1; // a = Math.floor(Math.random() x 90)+10; //test 2 digits (10-99)
         }
     }
-
     if (a.toString().length === 4) {
         opt = optArr[2];
         b = 0;
@@ -724,7 +723,6 @@ const onStartOrEnd = () => {
         document.getElementById(`expression2`).innerHTML = "";
         document.getElementById(`result`).innerHTML = "Kết quả: ";
         randomString = generateExpression();
-        console.log(randomString);
         updatePoints();
         eventClick();
     }
