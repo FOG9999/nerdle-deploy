@@ -1,0 +1,115 @@
+td.Board, td.Board2{
+    width: 50px;
+    height: 50px;
+    background-color: whitesmoke;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+td.Keyboard{
+    width: 50px;
+    height: 41px;
+    background-color: lightgray;
+    text-align: center;
+    font-family: sans-serif;
+}
+td.Keyboard:hover{
+    cursor: pointer;
+    background-color: lightgreen;
+}
+.classTable{
+    margin-top: 30px;
+    padding-left: 0%;
+}
+.classKeyboard{
+    margin-top: 10px;
+    margin-left: 31.5%;
+    font-weight: bold;
+}
+
+.gg-enter {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 16px;
+    height: 18px;
+    border: 2px solid;
+    border-left: 0;
+    margin-left: 11px;
+    margin-top: 3px;
+    box-shadow:
+        -8px -6px 0 -6px,
+        -8px 6px 0 -6px
+}
+li{
+    list-style-type: none;
+  }
+.gg-enter::after,
+.gg-enter::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    right: 4px
+}
+.gg-enter::before {
+    background: currentColor;
+    width: 16px;
+    height: 2px;
+    top: 6px
+}
+.gg-enter::after {
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid;
+    border-top: 2px solid;
+    top: 4px;
+    transform: rotate(45deg)
+}
+
+.gg-backspace {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 14px;
+    height: 14px;
+    transform: scale(var(--ggs,1));
+    margin-left: 12px;
+    margin-top: 5px;
+    border: 2px solid;
+    border-left: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px
+  }
+.gg-backspace::after,
+.gg-backspace::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute
+}
+.gg-backspace::before {
+    background:
+    linear-gradient( to left,
+    currentColor 18px,transparent 0)
+    no-repeat center center/10px 2px;
+    border-right: 3px solid transparent;
+    box-shadow: inset 0 0 0 2px;
+    right: 2px;
+    bottom: 1px;
+    width: 8px;
+    height: 8px;
+    border-left: 3px solid transparent;
+    transform: rotate(45deg)
+}
+.gg-backspace::after {
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-top-left-radius: 1px;
+    transform: rotate(-45deg);
+    top: 0;
+    left: -5px
+}

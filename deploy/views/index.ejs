@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../stylesheets/index.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <title>Nerdle</title>
+</head>
+
+<body>
+  <center>
+    <h1>Nerdle</h1>
+  </center>
+  <hr>
+  <div class="row">
+    <div class="col-xl-4">
+      <center>
+        <h2>Luật chơi</h2>
+      </center>
+      <div>
+        <div class="m-auto" style="width: fit-content">
+          Mỗi lần đoán là 1 phép tính có nghĩa với 1 cách tính toán.
+          <br>
+          Các số có 2 chữ số trở lên không bắt đầu với chữ số "0".
+          <br>
+          Ký tự đầu mỗi dòng không phải là dấu "+", "x", "/", "=".
+          <br>
+          Hai dấu toán tử không ở cạnh nhau (Trừ khi dấu "-" tạo số âm).
+          <br>
+          Nếu dấu "-" ở sau dấu "+", dấu "+" sẽ thành dấu "-".
+          <br>
+          Nếu dấu "-" ở sau dấu "-", dấu "-" sẽ thành dấu "+".
+          <br>
+          Thêm 1 điểm cho mỗi ký tự đúng vị trí.
+          <table style="display: inline-block; width: fit-content; margin-top: 3px;" class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="background-color: lightgreen; width: 10px; height: 10px;"></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          Thêm 2 điểm cho mỗi ký tự sai vị trí mà có trong đáp án.
+          <table style="display: inline-block; width: fit-content; margin-top: 3px;" class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="background-color: yellow; width: 10px; height: 10px;"></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          Thêm 0 điểm cho mỗi ký tự không có trong đáp án.
+          <table style="display: inline-block; width: fit-content; margin-top: 3px;" class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="background-color: red; width: 10px; height: 10px;"></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          Mỗi ký tự chỉ thêm điểm được 1 lần, ưu tiên ký tự đứng trước.
+          <br>
+          Thêm 1 dòng tốn 10 điểm.
+          <hr>
+        </div>
+        <div class="m-auto" style="width: fit-content;">
+          <h3 style="color: red;">Điểm của bạn: <span id="points"></span></h3>
+          <button class="btn btn-success" id="start-btn" onclick="onStartOrEnd()">Bắt đầu</button>
+          <button class="btn btn-primary" id="add-row" onclick="addRow()" style="visibility: hidden">Thêm dòng</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 d-flex justify-content-center">
+      <div>
+        <div class="m-auto" style="width: fit-content">
+          <table style="width: fit-content;" id="mainTable" class="classTable table table-bordered"></table>
+        </div>
+        <div class="m-auto" style="width: fit-content">
+          <table id="mainKeyboard" class="table m-auto table-bordered my-2" style="width: fit-content;"></table>
+          <table id="mainKeyboard2" class="table m-auto table-bordered mb-2" style="width: fit-content;"></table>
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="col-xl-4 d-flex justify-content-center">
+      <div id="calculator" style="visibility: hidden">
+        <center>
+          <h2>Máy tính</h2>
+        </center>
+        Tham số đầu tiên: (Giới hạn 4 ký tự)
+        <br>
+        <table style="display: inline-block; width: fit-content;" class="table table-bordered">
+          <tbody>
+            <tr>
+              <td style="height: 50px" id="expression1" colspan="6"></td>
+            </tr>
+            <tr>
+              <td class="Keyboard" id="calcu-num-1.1">1</td>
+              <td class="Keyboard" id="calcu-num-2.1">2</td>
+              <td class="Keyboard" id="calcu-num-3.1">3</td>
+              <td class="Keyboard" id="calcu-num-4.1">4</td>
+              <td class="Keyboard" id="calcu-num-5.1">5</td>
+              <td class="Keyboard" id="calcu-num-11.1">-</td>
+            </tr>
+            <tr>
+              <td class="Keyboard" id="calcu-num-6.1">6</td>
+              <td class="Keyboard" id="calcu-num-7.1">7</td>
+              <td class="Keyboard" id="calcu-num-8.1">8</td>
+              <td class="Keyboard" id="calcu-num-9.1">9</td>
+              <td class="Keyboard" id="calcu-num-10.1">0</td>
+              <td class="Keyboard" id="calcu-num-12.1">
+                <li><i class="gg-backspace"></i></li>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        Cách tính toán:
+        <br />
+        <center>
+          <table style="display: inline-block; width: fit-content;" class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="Keyboard" id="calcu-opt-1">+</td>
+                <td class="Keyboard" id="calcu-opt-2">-</td>
+                <td class="Keyboard" id="calcu-opt-3">x</td>
+                <td class="Keyboard" id="calcu-opt-4">/</td>
+              </tr>
+            </tbody>
+          </table>
+        </center>
+        Tham số thứ hai: (Giới hạn 4 ký tự)
+        <br>
+        <table style="display: inline-block; width: fit-content;" class="table table-bordered">
+          <tbody>
+            <tr>
+              <td style="height: 50px" id="expression2" colspan="6"></td>
+            </tr>
+            <tr>
+              <td class="Keyboard" id="calcu-num-1.2">1</td>
+              <td class="Keyboard" id="calcu-num-2.2">2</td>
+              <td class="Keyboard" id="calcu-num-3.2">3</td>
+              <td class="Keyboard" id="calcu-num-4.2">4</td>
+              <td class="Keyboard" id="calcu-num-5.2">5</td>
+              <td class="Keyboard" id="calcu-num-11.2">-</td>
+            </tr>
+            <tr>
+              <td class="Keyboard" id="calcu-num-6.2">6</td>
+              <td class="Keyboard" id="calcu-num-7.2">7</td>
+              <td class="Keyboard" id="calcu-num-8.2">8</td>
+              <td class="Keyboard" id="calcu-num-9.2">9</td>
+              <td class="Keyboard" id="calcu-num-10.2">0</td>
+              <td class="Keyboard" id="calcu-num-12.2">
+                <li><i class="gg-backspace"></i></li>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <p id="result">Kết quả: </p>
+        <hr>
+        <center><button type="button" class="btn btn-info" onclick="calculator()">Tính toán</button></center>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/index.js"></script>
+</body>
+
+</html>
