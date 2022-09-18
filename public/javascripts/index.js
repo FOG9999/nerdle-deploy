@@ -41,19 +41,20 @@ function createBoard(p1, p2) {
     document.getElementById("mainTable").innerHTML = board
 }
 
-// Update board
+// Add row
 function addRow() {
     length += 1;
-    points -= 10;
-    if (points < 0) {
+    if (points < 10) {
         alert('Bạn không có đủ điểm để thêm dòng.');
     }
     else {
+        points -= 10;
         updateBoard(length, width);
         updatePoints();
     }
 }
 
+// Update board
 function updateBoard(p1, p2) {
     let list = []
     let a = 0;
@@ -97,8 +98,8 @@ function createKeyboard() {
 
 // Keyboard letters
 function keyboardLetters() {
-    lettersList1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    lettersList2 = ["<li><i class='gg-enter'></i></li>", "+", "-", "x", "/", "=", "<li><i class='gg-backspace'></i></li>"]
+    let lettersList1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    let lettersList2 = ["<li><i class='gg-enter'></i></li>", "+", "-", "x", "/", "=", "<li><i class='gg-backspace'></i></li>"]
     for (let index = 0; index < 10; index++) {
         document.getElementById(`1.${index + 1}.2`).innerHTML = `${lettersList1[index]}`
     }
