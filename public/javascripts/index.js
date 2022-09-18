@@ -43,11 +43,11 @@ function createBoard(p1, p2) {
 
 // Add row
 function addRow() {
-    length += 1;
     if (points < 10) {
         alert('Bạn không có đủ điểm để thêm dòng.');
     }
     else {
+        length += 1;
         points -= 10;
         updateBoard(length, width);
         updatePoints();
@@ -56,18 +56,20 @@ function addRow() {
 
 // Update board
 function updateBoard(p1, p2) {
-    let list = []
+    let list = [];
+    let list2 = [];
     let a = 0;
     for (let i = 1; i <= p1 - 1; i++) {
         for (let j = 1; j <= p2; j++) {
-            list.push([document.getElementById(`${i}.${j}`).innerHTML, document.getElementById(`${i}.${j}`).style.backgroundColor])
+            list.push(document.getElementById(`${i}.${j}`).innerHTML);
+            list2.push(document.getElementById(`${i}.${j}`).style.backgroundColor);
         }
     }
-    createBoard(p1, p2)
+    createBoard(p1, p2);
     for (let i = 1; i <= p1 - 1; i++) {
         for (let j = 1; j <= p2; j++) {
-            document.getElementById(`${i}.${j}`).innerHTML = list[a][0]
-            document.getElementById(`${i}.${j}`).style.backgroundColor = list[a][1]
+            document.getElementById(`${i}.${j}`).innerHTML = list[a];
+            document.getElementById(`${i}.${j}`).style.backgroundColor = list2[a];
             a += 1;
         }
     }
@@ -80,38 +82,38 @@ const updatePoints = () => {
 
 // Create keyboard
 function createKeyboard() {
-    let keyboard = ""
-    keyboard += "<tr>"
+    let keyboard = "";
+    keyboard += "<tr>";
     for (let i = 1; i <= 10; i++) {
-        keyboard += `<td class="Keyboard" id=1.${i}.2></td>`
+        keyboard += `<td class="Keyboard" id=1.${i}.2></td>`;
     }
-    keyboard += "</tr>"
-    let keyboard2 = ""
-    keyboard2 += "<tr>"
+    keyboard += "</tr>";
+    let keyboard2 = "";
+    keyboard2 += "<tr>";
     for (let i = 1; i <= 7; i++) {
-        keyboard2 += `<td class="Keyboard" id=1.${i}.3></td>`
+        keyboard2 += `<td class="Keyboard" id=1.${i}.3></td>`;
     }
-    keyboard2 += "</tr>"
-    document.getElementById("mainKeyboard").innerHTML = keyboard
-    document.getElementById("mainKeyboard2").innerHTML = keyboard2
+    keyboard2 += "</tr>";
+    document.getElementById("mainKeyboard").innerHTML = keyboard;
+    document.getElementById("mainKeyboard2").innerHTML = keyboard2;
 }
 
 // Keyboard letters
 function keyboardLetters() {
-    let lettersList1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    let lettersList2 = ["<li><i class='gg-enter'></i></li>", "+", "-", "x", "/", "=", "<li><i class='gg-backspace'></i></li>"]
+    let lettersList1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    let lettersList2 = ["<li><i class='gg-enter'></i></li>", "+", "-", "x", "/", "=", "<li><i class='gg-backspace'></i></li>"];
     for (let index = 0; index < 10; index++) {
-        document.getElementById(`1.${index + 1}.2`).innerHTML = `${lettersList1[index]}`
+        document.getElementById(`1.${index + 1}.2`).innerHTML = `${lettersList1[index]}`;
     }
     for (let index = 0; index < 7; index++) {
-        document.getElementById(`1.${index + 1}.3`).innerHTML = `${lettersList2[index]}`
+        document.getElementById(`1.${index + 1}.3`).innerHTML = `${lettersList2[index]}`;
     }
 }
 
 // Events
 function eventClick() {
-    let index = 1
-    let index2 = 1
+    let index = 1;
+    let index2 = 1;
     let counter = 1;
     let calcuNum1 = "";
     let calcuPrevious1 = [];
